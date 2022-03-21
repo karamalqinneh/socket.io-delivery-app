@@ -6,16 +6,17 @@ const host = "http://localhost:3000";
 
 const hubConnection = io.connect(host);
 
-eventEmitter.on("packagePickedUp", packagePickedUp);
-eventEmitter.on("packageDeleivered", packageDeleivered);
-eventEmitter.on("packageToBeDeleivered", packageToBeDeleivered);
+hubConnection.emit("joinOrderRoom");
+hubConnection.on("packagePickedUp", packagePickedUp);
+hubConnection.on("packageDeleivered", packageDeleivered);
+hubConnection.on("packageToBeDeleivered", packageToBeDeleivered);
 
 function packageToBeDeleivered(order) {
   console.log(
     `You have a package for Mr.${order.customer} to delver at ${order.address}`
   );
   setTimeout(() => {
-    eventEmitter.emit("packagePickedUp", order);
+    hubConnection.emit("packagePickedUp", order);
   }, 3000);
 }
 function packagePickedUp(order) {
@@ -31,12 +32,12 @@ function packagePickedUp(order) {
   }
   `);
   setTimeout(() => {
-    eventEmitter.emit("packageDeleivered", order);
+    hubConnection.emit("packageDeleivered", order);
   }, 3000);
 }
 function packageDeleivered(order) {
   console.log(`DRIVER: delivered order ${order.id}`);
   setTimeout(() => {
-    eventEmitter.emit("packageDeleiveredSuccessfully", order);
+    hubConnection.emit("packageDeleiveredSuccessfully", order);
   }, 100);
 }

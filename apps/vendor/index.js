@@ -1,11 +1,13 @@
+"use strict";
 const { faker } = require("@faker-js/faker");
-("use strict");
 
 const io = require("socket.io-client");
 
 const host = "http://localhost:3000";
 
 const hubConnection = io.connect(host);
+
+hubConnection.emit("joinOrderRoom");
 
 hubConnection.on(
   "packageDeleiveredSuccessfully",
@@ -33,7 +35,7 @@ function packageReady(socket) {
     address: ${order.customer}
   }
   `);
-  socket.emit("packageToBeDeleivered", order);
+  hubConnection.emit("packageToBeDeleivered", order);
 }
 
 function packageDeleiveredSuccessfully(order) {
