@@ -1,0 +1,27 @@
+{
+  "name": "socket.io-delivery-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --verbose --detectOpenHandles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karamalqinneh/socket.io-delivery-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karamalqinneh/socket.io-delivery-app/issues"
+  },
+  "homepage": "https://github.com/karamalqinneh/socket.io-delivery-app#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0",
+    "socket.io": "^4.4.1"
+  }
+}

@@ -5,6 +5,7 @@ const io = require("socket.io-client");
 const host = "http://localhost:3000";
 
 const hubConnection = io.connect(host);
+// let apps = io.connect(host + "/apps");
 
 hubConnection.emit("joinOrderRoom");
 hubConnection.on("packagePickedUp", packagePickedUp);
@@ -13,7 +14,7 @@ hubConnection.on("packageToBeDeleivered", packageToBeDeleivered);
 
 function packageToBeDeleivered(order) {
   console.log(
-    `You have a package for Mr.${order.customer} to delver at ${order.address}`
+    `You have a package for Mr.${order.customer} to deliver at ${order.address}`
   );
   setTimeout(() => {
     hubConnection.emit("packagePickedUp", order);

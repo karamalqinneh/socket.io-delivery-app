@@ -6,6 +6,7 @@ const io = require("socket.io-client");
 const host = "http://localhost:3000";
 
 const hubConnection = io.connect(host);
+// let apps = io.connect(host + "/apps");
 
 hubConnection.emit("joinOrderRoom");
 
@@ -16,7 +17,7 @@ hubConnection.on(
 
 hubConnection.on("packageReady", packageReady);
 
-function packageReady(socket) {
+function packageReady() {
   //   console.log("We have a package to be delivered");
   const order = {
     id: faker.datatype.uuid(),
